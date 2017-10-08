@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learn flask the hard way - Sign In</title>
+</head>
+<body>
+
+<h1>Learn flask the hard way</h1>
+
+{% if message %}
+<p style="color:red">{{ message }}</p>
+{% endif %}
+
+<form action="/signin" method="post">
+    <legend>Sign In: </legend>
+    <p>{{ form.email }}</p>
+    <p>{{ form.password }}</p>
+    <p>{{ form.csrf_token }}</p>
+
+    <p><input type="submit" value="Sign In"></p>
+</form>
+
+</body>
+</html>
