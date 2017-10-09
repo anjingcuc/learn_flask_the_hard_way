@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learn flask the hard way - Watermark</title>
+</head>
+<body>
+
+<h1>Learn flask the hard way</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<form action="/watermark" method="post" enctype="multipart/form-data">
+    <p>Watermark: {{ form.watermark }}</p>
+    <p>Image: {{ form.image }}</p>
+    <p>{{ form.csrf_token }}</p>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
