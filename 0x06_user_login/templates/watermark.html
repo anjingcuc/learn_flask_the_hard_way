@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block page_name %}Watermark{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<Legend>Upload file to watermark:</Legend>
+
+<form action="/upload" id="upload" class="dropzone"></form>
+
+<form action="/watermark" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        {{ form.watermark.label }}
+        {{ form.watermark(class_="form-control") }}
+    </div>
+
+    <p>{{ form.csrf_token }}</p>
+
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+
+<a href="{{ url_for('signoff') }}">Sign Off</a>
+{% endblock %}

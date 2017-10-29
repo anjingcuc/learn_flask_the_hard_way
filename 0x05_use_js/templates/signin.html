@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block page_name %}Sign In{% endblock %}
+
+{% block content %}
+{% if message %}
+<p style="color:red">{{ message }}</p>
+{% endif %}
+
+<form action="/signin" method="post">
+    <legend>Sign In:</legend>
+    <div class="form-group">
+        {{ form.email.label }}
+        {{ form.email(class_="form-control") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.password.label }}
+        {{ form.password(class_="form-control") }}
+    </div>
+    {{ form.csrf_token }}
+
+    <input class="btn btn-primary" type="submit" value="Sign In">
+</form>
+{% endblock %}
