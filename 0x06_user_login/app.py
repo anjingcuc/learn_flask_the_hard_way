@@ -1,6 +1,5 @@
 from flask import render_template, Flask, redirect, url_for, request
 from forms.signin_form import SignInForm
-from forms.signup_form import SignUpForm
 from forms.watermark_form import WatermarkForm
 from flask.ext.login import LoginManager, login_required, login_user, logout_user
 from models import User
