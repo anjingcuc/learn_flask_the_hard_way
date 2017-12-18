@@ -2,14 +2,14 @@
 
 {% block content -%}
 <h4 class="page-header">
-    音频水印系统
+    图像水印
     <small>
-        上传你需要嵌入水印的音频文件并提交水印内容来开始水印嵌入。
+        上传你需要嵌入水印的图像文件并提交水印内容来开始水印嵌入。
     </small>
 
-    <form action="/watermark/audio/upload" id="upload" class="dropzone"></form>
+    <form action="/watermark/image/upload" id="upload" class="dropzone"></form>
 
-    <form action="/watermark/audio" method="post" enctype="multipart/form-data">
+    <form action="/watermark/image" method="post" enctype="multipart/form-data">
         <div class="form-group">
             {{ form.watermark.label }}
             {{ form.watermark(class_="form-control") }}

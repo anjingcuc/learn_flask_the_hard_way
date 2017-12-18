@@ -6,6 +6,7 @@ from importlib import import_module
 
 from watermark.views.auth import login_manager
 
+
 def create_app():
     app = Flask('watermark')
     AdminLTE(app)

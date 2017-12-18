@@ -2,6 +2,12 @@
 {% import "adminlte/layout.html" as layout with context %}
 {% import "adminlte/widgets.html" as widgets with context %}
 
+{%- block styles %}
+{{ super() }}
+<link href="/static/css/lib/dropzone.min.css" rel="stylesheet" type="text/css"/>
+<link href="/static/css/common.css" rel="stylesheet" type="text/css"/>
+{% endblock styles -%}
+
 {% block navbar %}
 <!-- Sidebar toggle button-->
 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -155,13 +161,13 @@
 <ul class="sidebar-menu">
     <li class="header">侧边栏</li>
     <li class="active">
-        <a href="{{ url_for('watermark.image.index') }}">
-            <i class="fa fa-dashboard"></i> <span>图像水印</span>
+        <a href="{{ url_for('watermark.audio.index') }}">
+            <i class="fa fa-dashboard"></i> <span>音频水印</span>
         </a>
     </li>
     <li>
-        <a href="{{ url_for('watermark.audio.index') }}">
-            <i class="fa fa-dashboard"></i> <span>音频水印</span>
+        <a href="{{ url_for('watermark.image.index') }}">
+            <i class="fa fa-dashboard"></i> <span>图像水印</span>
         </a>
     </li>
     <li>
@@ -172,3 +178,9 @@
 </ul>
 <!-- /.sidebar -->
 {%- endblock sidebar %}
+
+{%- block scripts %}
+{{ super() }}
+<script src="/static/js/lib/dropzone.min.js"></script>
+<script src="/static/js/common.js"></script>
+{% endblock scripts -%}
