@@ -3,9 +3,15 @@ from forms.login_form import LoginForm
 from forms.watermark_form import WatermarkForm
 import os
 
-app = Flask('watermark')
+app = Flask('__name__')
 app.secret_key = 'LearnFlaskTheHardWay2017'
 
+upload_dir = os.path.join(
+    app.instance_path, 'upload' 
+)
+
+if not os.path.exists(upload_dir):
+    os.makedirs(upload_dir, mode=0o755)
 
 @app.route('/')
 def index():
@@ -28,9 +34,7 @@ def watermark():
     if form.validate_on_submit():
         print(form.watermark.data)
         f = form.image.data
-        f.save(os.path.join(
-            app.instance_path, 'upload', f.filename
-        ))
+        f.save(os.path.join(upload_dir, f.filename))
         flash('Upload success。')
         return redirect(url_for('watermark'))
 

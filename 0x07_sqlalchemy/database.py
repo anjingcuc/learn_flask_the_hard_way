@@ -14,7 +14,7 @@ def create_app():
         from models import User
         db.create_all()
 
-        db.session.add(User(email='anjing@cuc.edu.cn', password='123456'))
+        db.session.merge(User(id=1, email='anjing@cuc.edu.cn', password='123456'))
         db.session.commit()
 
     return app

@@ -13,7 +13,7 @@
 
 <form action="/signin" method="post">
     <legend>Sign In: </legend>
-    <p>{{ form.email }}</p>
+    <p>{{ form.email(placeholder='yourname@email.com') }}</p>
     <p>{{ form.password }}</p>
     <p>{{ form.csrf_token }}</p>
 
