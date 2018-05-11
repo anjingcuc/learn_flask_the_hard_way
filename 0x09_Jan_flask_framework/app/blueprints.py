@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 from flask import Blueprint
 
-home = Blueprint('home', 'app.views.home', template_folder='templates', url_prefix='/')
+home = Blueprint('home', 'app.public.views', url_prefix='/')
 
-auth = Blueprint('auth', 'app.views.auth', template_folder='templates', url_prefix='/auth')
+auth = Blueprint('auth', 'app.auth.views', url_prefix='/auth')
 
 all_blueprints = (home, auth,)
