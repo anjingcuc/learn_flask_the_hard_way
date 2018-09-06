@@ -13,6 +13,14 @@ users = [
 app = Flask('watermark')
 app.secret_key = 'LearnFlaskTheHardWay2017'
 
+upload_dir = os.path.join(
+    app.instance_path, 'upload' 
+)
+
+if not os.path.exists(upload_dir):
+    os.makedirs(upload_dir, mode=0o755)
+
+
 # Add LoginManager
 login_manager = LoginManager()
 login_manager.session_protection = 'AdminPassword4Me'
@@ -69,7 +77,7 @@ def signin():
 @app.route('/upload', methods=['POST'])
 def upload():
     f = request.files['file']
-    save_path = os.path.join(app.instance_path, 'upload', f.filename)
+    save_path = os.path.join(upload_dir, f.filename)
     f.save(save_path)
 
     return redirect(url_for('watermark'))

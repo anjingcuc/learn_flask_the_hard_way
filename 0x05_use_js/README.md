@@ -14,24 +14,24 @@ window.onload = funtion(
 
 ## HTML DOM (Document Object Model)
 
-![ct_htmltree](C:\Users\hacker\Workspace\learn_flask_the_hard_way\0x05_use_js\ct_htmltree.gif)
+![ct_htmltree](ct_htmltree.gif)
 
-为了便于对 HTML 进行操作，在 JavaScript 中将 HTML 文档抽象成了文档对象模型，即 DOM。通过 DOM 的接口，JavaScript 能够改变整个 HTML 显示的内容，必如：
+为了便于对 HTML 进行操作，在 JavaScript 中将 HTML 文档抽象成了文档对象模型，即 DOM。通过 DOM 的接口，JavaScript 能够改变整个 HTML 显示的内容，比如：
 
 ```html
 <--!index.html!-->
 <html>
 <body>
-  
+
 <p id="intro">Hello World!</p>
-  
+
 <script>
 window.onload = function(
   var txt = document.getElementById("intro");
   txt.innerHTML = "你好，世界！";
 );
 </script>
-  
+
 </body>
 </html>
 

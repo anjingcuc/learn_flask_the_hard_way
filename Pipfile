@@ -1,0 +1,19 @@
+[[source]]
+
+url = "https://mirrors.aliyun.com/pypi/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+flask = "*"
+flask-wtf = "*"
+flask-login = "*"
+flask-sqlalchemy = "*"
+opencv-python = "*"
+
+
+[dev-packages]
+
+requests = "*"
