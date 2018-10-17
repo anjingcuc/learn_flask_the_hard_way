@@ -1,39 +1,35 @@
 from flask import render_template, Flask, redirect, url_for, request
 from forms.signin_form import SignInForm
 from forms.watermark_form import WatermarkForm
-from flask.ext.login import LoginManager, login_required, login_user, logout_user
+from flask_login import LoginManager, login_required, login_user, logout_user
 from models import User
 import os
 
-users = [
-    {'id': '1', 'email': 'admin@lfthw.com', 'password': '111111'},
-    {'id': '2', 'email': 'anjing@cuc.edu.cn', 'password': '123456'}
-]
+users = [{
+    'id': '1',
+    'email': 'admin@lfthw.com',
+    'password': '111111'
+}, {
+    'id': '2',
+    'email': 'anjing@cuc.edu.cn',
+    'password': '123456'
+}]
 
 app = Flask('watermark')
 app.secret_key = 'LearnFlaskTheHardWay2017'
 
-upload_dir = os.path.join(
-    app.instance_path, 'upload' 
-)
+upload_dir = os.path.join(app.instance_path, 'upload')
 
 if not os.path.exists(upload_dir):
     os.makedirs(upload_dir, mode=0o755)
-
 
 # Add LoginManager
 login_manager = LoginManager()
 login_manager.session_protection = 'AdminPassword4Me'
 login_manager.login_view = 'signin'
-login_manager.login_message = 'Unauthorized User'
+login_manager.login_message = '未登录'
 login_manager.login_message_category = "info"
 login_manager.init_app(app)
-
-
-def query_user(email):
-    for user in users:
-        if user['email'] == email:
-            return user
 
 
 @login_manager.user_loader
@@ -42,6 +38,12 @@ def load_user(user_id):
         if user['id'] == user_id:
             user = User()
             user.id = user_id
+            return user
+
+
+def query_user(email):
+    for user in users:
+        if user['email'] == email:
             return user
 
 
