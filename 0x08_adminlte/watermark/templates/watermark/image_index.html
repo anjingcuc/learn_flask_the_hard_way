@@ -1,0 +1,24 @@
+{% extends "watermark_base.html" %}
+
+{% block content -%}
+<h4 class="page-header">
+    图像水印
+    <small>
+        上传你需要嵌入水印的图像文件并提交水印内容来开始水印嵌入。
+    </small>
+
+    <form action="/watermark/image/upload" id="upload" class="dropzone"></form>
+
+    <form action="/watermark/image" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            {{ form.watermark.label }}
+            {{ form.watermark(class_="form-control") }}
+        </div>
+
+        <p>{{ form.csrf_token }}</p>
+
+        <input class="btn btn-primary" type="submit" value="嵌入水印">
+    </form>
+</h4>
+<!-- Small boxes (Stat box) -->
+{%- endblock content %}

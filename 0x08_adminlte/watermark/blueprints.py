@@ -1,14 +1,9 @@
 from flask import Blueprint
 
-auth = Blueprint('auth', 'watermark.views.auth', template_folder='templates', url_prefix='/auth')
+home = Blueprint('home', 'watermark.public.views', template_folder='templates', url_prefix='/')
 
-watermark_audio = Blueprint('watermark.audio', 'watermark.views.watermark.audio', template_folder='templates',
-                            url_prefix='/watermark')
+auth = Blueprint('auth', 'watermark.auth.views', template_folder='templates', url_prefix='/auth')
 
-watermark_image = Blueprint('watermark.image', 'watermark.views.watermark.image', template_folder='templates',
-                            url_prefix='/watermark')
+watermark = Blueprint('watermark', 'watermark.watermark.views', template_folder='templates', url_prefix='/watermark')
 
-watermark_video = Blueprint('watermark.video', 'watermark.views.watermark.video', template_folder='templates',
-                            url_prefix='/watermark')
-
-all_blueprints = (auth, watermark_audio,watermark_image,watermark_video,)
+all_blueprints = (home, auth, watermark,)

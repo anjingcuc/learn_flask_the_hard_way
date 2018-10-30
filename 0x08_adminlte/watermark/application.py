@@ -4,7 +4,7 @@ from watermark.flask_adminlte import AdminLTE
 from watermark.blueprints import all_blueprints
 from importlib import import_module
 
-from watermark.views.auth import login_manager
+from watermark.auth.views import login_manager
 
 
 def create_app():
@@ -17,12 +17,6 @@ def create_app():
     for bp in all_blueprints:
         import_module(bp.import_name)
         app.register_blueprint(bp)
-
-    print(app.url_map)
-
-    @app.route('/')
-    def index():
-        return redirect(url_for('auth.login'))
 
     return app
 
