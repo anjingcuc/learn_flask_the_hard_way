@@ -4,8 +4,10 @@ from flask_wtf.csrf import CSRFProtect, CSRFError
 
 app = Flask(__name__)
 app.secret_key = 'LearnFlaskTheHardWay2017'
+
 #app.config['WTF_CSRF_SECRET_KEY'] = 'CSRFTokenGeneratorSecretKey2018' # CSRF Token生成器的签发密钥
 #app.config['WTF_CSRF_TIME_LIMIT'] = 10 # 表单提交限时1分钟，超时则触发CSRF Token校验失败错误
+
 csrf = CSRFProtect(app)
 
 @app.route('/')
