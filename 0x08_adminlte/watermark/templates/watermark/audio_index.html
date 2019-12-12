@@ -1,24 +1,16 @@
 {% extends "base.html" %}
 
+{% block content_header -%}
+{%- endblock content_header %}
+
 {% block content -%}
-<h4 class="page-header">
-    音频水印系统
-    <small>
-        上传你需要嵌入水印的音频文件并提交水印内容来开始水印嵌入。
-    </small>
-
-    <form action="/watermark/audio/upload" id="upload" class="dropzone"></form>
-
-    <form action="/watermark/audio" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            {{ form.watermark.label }}
-            {{ form.watermark(class_="form-control") }}
-        </div>
-
-        <p>{{ form.csrf_token }}</p>
-
-        <input class="btn btn-primary" type="submit" value="嵌入水印">
-    </form>
-</h4>
-<!-- Small boxes (Stat box) -->
+<div>
+    <article class="blog-post">
+        <header>
+            <h2>anjing</h2>
+        </header>
+        <div></div>
+        <div></div>
+    </article>
+</div>
 {%- endblock content %}

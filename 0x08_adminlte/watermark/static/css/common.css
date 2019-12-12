@@ -3,3 +3,12 @@
     border-radius: 5px;
     background: white;
 }
+
+.content-wrapper {
+    background-color: white;
+}
+
+.blog-post {
+    border-radius: 3px;
+    border: 1px solid #efefef;
+}
