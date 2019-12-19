@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from flask import Flask, redirect, url_for
+
 from app.flask_adminlte import AdminLTE
 
 from app.blueprints import all_blueprints
@@ -8,6 +9,7 @@ from importlib import import_module
 from app.extentions import login_manager
 from app.extentions import db
 from app.extentions import bcrypt
+from app.extentions import migrate
 
 from config import config
 import os
@@ -25,10 +27,11 @@ def create_app():
     login_manager.login_view = 'signin'
     login_manager.login_message = 'Unauthorized User.'
     login_manager.login_message_category = "info"
+    
     login_manager.init_app(flask_app)
-
     db.init_app(flask_app)
     bcrypt.init_app(flask_app)
+    migrate.init_app(flask_app, db)
 
     for bp in all_blueprints:
         import_module(bp.import_name)

@@ -1,16 +1,17 @@
 [[source]]
+name = "aliyun"
 url = "https://mirrors.aliyun.com/pypi/simple"
 verify_ssl = true
-name = "pypi"
+
+[dev-packages]
+yapf = "*"
 
 [packages]
 flask = "*"
 flask-wtf = "*"
 flask-login = "*"
 flask-sqlalchemy = "*"
-opencv-python = "*"
-flask-bcrypt = "*"
-gunicorn = "*"
+flask-migrate = "*"
 
-[dev-packages]
-requests = "*"
+[requires]
+python_version = "3.7"
