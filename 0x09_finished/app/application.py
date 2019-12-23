@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 from flask import Flask, redirect, url_for
+from flask.cli import AppGroup
+import click
 
 from app.flask_adminlte import AdminLTE
 
@@ -10,6 +12,8 @@ from app.extentions import login_manager
 from app.extentions import db
 from app.extentions import bcrypt
 from app.extentions import migrate
+
+from app.user.models import User, UserRole
 
 from config import config
 import os
@@ -24,10 +28,10 @@ def create_app():
     flask_app.config.from_pyfile('app.cfg', silent=True)
 
     login_manager.session_protection = 'AdminPassword4Me'
-    login_manager.login_view = 'signin'
+    login_manager.login_view = 'auth.login'
     login_manager.login_message = 'Unauthorized User.'
     login_manager.login_message_category = "info"
-    
+
     login_manager.init_app(flask_app)
     db.init_app(flask_app)
     bcrypt.init_app(flask_app)
@@ -36,6 +40,24 @@ def create_app():
     for bp in all_blueprints:
         import_module(bp.import_name)
         flask_app.register_blueprint(bp)
+
+    user_cli = AppGroup('user')
+
+    @user_cli.command('create-admin')
+    @click.argument('email')
+    @click.argument('name')
+    @click.argument('password')
+    def create_admin(email, name, password):
+        user = User(email=email,
+                    email_confirmed=True,
+                    name=name,
+                    role=UserRole.ADMIN)
+        user.password = password
+
+        db.session.add(user)
+        db.session.commit()
+
+    flask_app.cli.add_command(user_cli)
 
     return flask_app
 

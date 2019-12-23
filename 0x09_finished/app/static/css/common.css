@@ -1,0 +1,18 @@
+.dropzone {
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    background: white;
+}
+
+#user-menu {
+    width: auto;
+}
+
+.content-wrapper {
+    background-color: white;
+}
+
+.blog-post {
+    border-radius: 3px;
+    border: 1px solid #efefef;
+}

@@ -19,16 +19,14 @@ def load_user(userid):
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    print('login')
     form = SignInForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first_or_404()
         if user.is_correct_password(form.password.data):
-
             login_user(user)
 
             next = request.args.get('next')
-            return redirect(next or url_for('public.index'))
+            return redirect(next or url_for('home.index'))
         else:
             return redirect(url_for('auth.login'))
 

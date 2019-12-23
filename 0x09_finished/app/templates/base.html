@@ -1,0 +1,58 @@
+{% extends "adminlte/base.html" %}
+{% import "adminlte/layout.html" as layout with context %}
+{% import "adminlte/widgets.html" as widgets with context %}
+
+{%- block styles %}
+{{ super() }}
+<link href="/static/css/lib/dropzone.min.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+{% endblock styles -%}
+
+{% block navbar %}
+<div class="container">
+    <div class="navbar-header">
+        <a href="{{url_for('home.index')}}" class="navbar-brand"><b>Insta</b>CUC</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+
+    </div>
+    <!-- /.navbar-collapse -->
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="hidden-xs">{{current_user.name}}</span>
+                </a>
+                <ul id="user-menu" class="dropdown-menu">
+                    <!-- Menu Body -->
+                    <li class="user-body">
+                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <a href="{{url_for('auth.logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-custom-menu -->
+</div>
+{%- endblock navbar %}
+
+
+{%- block scripts %}
+{{ super() }}
+<script src="/static/js/lib/dropzone.min.js"></script>
+<script src="/static/js/common.js"></script>
+{% endblock scripts -%}
