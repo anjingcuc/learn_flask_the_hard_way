@@ -4,8 +4,8 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from datetime import datetime
 
-from app.extentions import db
-from app.extentions import bcrypt
+from app.extensions import db
+from app.extensions import bcrypt
 
 import enum
 

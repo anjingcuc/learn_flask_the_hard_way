@@ -2,16 +2,18 @@
 from flask import Flask, redirect, url_for
 from flask.cli import AppGroup
 import click
+from pathlib import Path
 
 from app.flask_adminlte import AdminLTE
 
 from app.blueprints import all_blueprints
+from app.resources.views import api_bp
 from importlib import import_module
 
-from app.extentions import login_manager
-from app.extentions import db
-from app.extentions import bcrypt
-from app.extentions import migrate
+from app.extensions import login_manager
+from app.extensions import db
+from app.extensions import bcrypt
+from app.extensions import migrate
 
 from app.user.models import User, UserRole
 
@@ -27,6 +29,14 @@ def create_app():
     flask_app.config.from_object(config[config_name])
     flask_app.config.from_pyfile('app.cfg', silent=True)
 
+    upload_path = Path(flask_app.instance_path) / 'upload'
+    if not Path(flask_app.instance_path).exists():
+        Path(flask_app.instance_path).mkdir()
+    if not upload_path.exists():
+        upload_path.mkdir()
+
+    flask_app.config['UPLOAD_FOLDER'] = str(upload_path)
+
     login_manager.session_protection = 'AdminPassword4Me'
     login_manager.login_view = 'auth.login'
     login_manager.login_message = 'Unauthorized User.'
@@ -40,6 +50,7 @@ def create_app():
     for bp in all_blueprints:
         import_module(bp.import_name)
         flask_app.register_blueprint(bp)
+    flask_app.register_blueprint(api_bp)
 
     user_cli = AppGroup('user')
 

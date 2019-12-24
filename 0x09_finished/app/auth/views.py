@@ -8,8 +8,8 @@ from app.auth.forms import SignUpForm
 from app.blueprints import auth
 from app.user.models import User
 
-from app.extentions import db
-from app.extentions import login_manager
+from app.extensions import db
+from app.extensions import login_manager
 
 
 @login_manager.user_loader
