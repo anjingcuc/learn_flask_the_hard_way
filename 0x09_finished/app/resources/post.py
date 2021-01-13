@@ -7,12 +7,14 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 from pathlib import Path
 
+from marshmallow.exceptions import ValidationError
+
 from app.post.models import Post
 from app.extensions import marshmallow, db
 from app.utils.paginate import paginate
 
 
-class PostSchema(marshmallow.ModelSchema):
+class PostSchema(marshmallow.SQLAlchemyAutoSchema):
 
     id = marshmallow.Int(dump_only=True)
 
@@ -27,23 +29,30 @@ class PostResource(Resource):
     def get(self, post_id):
         schema = PostSchema()
         post = Post.query.get_or_404(post_id)
-        return {"post": schema.dump(user).data}
+        return {"post": schema.dump(post)}
 
     def put(self, post_id):
         schema = PostSchema(partial=True)
         post = Post.query.get_or_404(post_id)
-        post, errors = schema.load(request.json, instance=post)
-        if errors:
-            return errors, 422
+        try:
+            update_value = schema.load(request.json, instance=post)
+            Post.query.filter_by(id=post_id).update(update_value)
+        except ValidationError:
+            return 422
 
         db.session.commit()
 
-        return {"msg": "post updated", "post": schema.dump(post).data}
+        return {"msg": "post updated", "post": schema.dump(post)}
 
     def delete(self, post_id):
-        post = post.query.get_or_404(post_id)
+        post = Post.query.get_or_404(post_id)
         db.session.delete(post)
         db.session.commit()
+        
+        # 删除本地文件
+        # import os
+        # schema = PostSchema()
+        # os.remove(str(Path(current_app.config['UPLOAD_FOLDER']) / schema.dump(post)['image']))
 
         return {"msg": "post deleted"}
 
