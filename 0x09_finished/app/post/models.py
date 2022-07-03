@@ -5,7 +5,7 @@ from app.extensions import db
 
 class Post(db.Model):
     __tablename__ = "posts"
-    __table_args__ = {"useexisting": True, 'mysql_collate': 'utf8_general_ci'}
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False)

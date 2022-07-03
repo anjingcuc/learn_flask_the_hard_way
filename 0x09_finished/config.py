@@ -9,6 +9,7 @@ class BaseConfig:
     DEBUG = False
     TESTING = False
     SECRET_KEY = 'LearnFlaskTheHardWay.by.JanCUC'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = 'sqlite://:memory:'
 
 

@@ -18,7 +18,7 @@ class UserRole(enum.Enum):
 # user models
 class User(db.Model, UserMixin):
     __tablename__ = "users"
-    __table_args__ = {"useexisting": True, 'mysql_collate': 'utf8_general_ci'}
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)

@@ -5,9 +5,6 @@ from flask_login import login_required
 
 from watermark.watermark.forms import WatermarkForm
 
-from watermark.core.image import embed_watermark
-from watermark.core.music import lsb_watermark
-
 import os
 
 IMAGE_PATH = ''
@@ -23,7 +20,7 @@ def audio():
             return redirect(url_for('watermark.audio'))
         else:
             watermark_string = form.watermark.data
-            lsb_watermark(AUDIO_PATH, watermark_string, 'temp.wav')
+            # lsb_watermark(AUDIO_PATH, watermark_string, 'temp.wav')
         return redirect(url_for('watermark.audio'))
     return render_template('watermark/audio_index.html', form=form)
 
@@ -51,7 +48,7 @@ def image():
         else:
             watermark_string = form.watermark.data
             temp_file_path = os.path.join(current_app.instance_path, 'temp', 'temp.jpg')
-            embed_watermark(IMAGE_PATH, watermark_string, temp_file_path)
+            # embed_watermark(IMAGE_PATH, watermark_string, temp_file_path)
 
         return redirect(url_for('watermark.image'))
     return render_template('watermark/image_index.html', form=form)

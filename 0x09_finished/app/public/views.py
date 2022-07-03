@@ -15,6 +15,6 @@ def index():
 def images(image_name):
     try:
         return send_from_directory(current_app.config["UPLOAD_FOLDER"],
-                                   filename=image_name)
+                                   path=image_name)
     except FileNotFoundError:
         abort(404)

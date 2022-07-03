@@ -12,7 +12,7 @@ from app.extensions import marshmallow, db
 from app.utils.paginate import paginate
 
 
-class PostSchema(marshmallow.ModelSchema):
+class PostSchema(marshmallow.SQLAlchemyAutoSchema):
 
     id = marshmallow.Int(dump_only=True)
 
