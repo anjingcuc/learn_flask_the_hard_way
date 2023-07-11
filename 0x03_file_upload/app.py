@@ -3,7 +3,7 @@ from forms.login_form import LoginForm
 from forms.watermark_form import WatermarkForm
 import os
 
-app = Flask('__name__')
+app = Flask(__name__)
 app.secret_key = 'LearnFlaskTheHardWay2017'
 
 upload_dir = os.path.join(
